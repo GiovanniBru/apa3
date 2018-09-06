@@ -1,4 +1,4 @@
-/* Radix Sort, algoritmo de ordenaÁ„o pseudo-linear, ideal para ordenar datas, ele ordena primeiro do bit menos significativo para o mais significativo */
+/* Radix Sort, algoritmo de ordena√ß√£o pseudo-linear, ideal para ordenar datas, ele ordena primeiro do bit menos significativo para o mais significativo */
 
 #include<iostream>]
 
@@ -8,7 +8,7 @@ using namespace std;
 void CountingSort(int aray[], int tamanho, int expoente)
 {
     int B[tamanho]; // Array B.
-    int i, C[10] = {0}; // Criando o C, vai de 0 a 9, e inicio tudo com zero. Como o radix sort vou ordenar cada casa por vez, n„o tem problema.
+    int i, C[10] = {0}; // Criando o C, vai de 0 a 9, e inicio tudo com zero. Como o radix sort vou ordenar cada casa por vez, n√£o tem problema.
 
     for (i = 0; i < tamanho; i++)
         C[(aray[i]/expoente)%10]++; // "Cria os baldes" das dezenas, centenas, etc... e conta as frequencias..
@@ -16,13 +16,13 @@ void CountingSort(int aray[], int tamanho, int expoente)
     for (i = 1; i < 10; i++)
         C[i] += C[i - 1]; // Faz as somas da casas, no final das contas vai dar a posicao correta do numero..
 
-    for (i = tamanho - 1; i >= 0; i--) // O array È percorrido de tras para frente para manter-se estavel.
+    for (i = tamanho - 1; i >= 0; i--) // O array √© percorrido de tras para frente para manter-se estavel.
     {
-        B[C[(aray[i]/expoente)%10]-1] = aray[i]; // Joga os valores de A em B atravÈs do valor de C, fazemos isso para nao perder o valor em A.
+        B[C[(aray[i]/expoente)%10]-1] = aray[i]; // Joga os valores de A em B atrav√©s do valor de C, fazemos isso para nao perder o valor em A.
         C[(aray[i]/expoente)%10]--;
     }
 
-    for (i = 0; i < tamanho; i++) // Joga os elementos de B em A, j· ordenados.
+    for (i = 0; i < tamanho; i++) // Joga os elementos de B em A, j√° ordenados.
         aray[i] = B[i];
 }
 
@@ -31,10 +31,10 @@ void RadixSort(int aray[], int tamanho)
 {
     int maior = aray[0];
     for (int i = 1; i < tamanho; i++) // Nesse for eu calculo o maior valor, dessa forma eu conssigo saber quantas casas decimais eu tenho,
-        if (aray[i] > maior)         //  esse valor maximo poderia ser pedido na propia funÁ„o do radix sort tambem...
+        if (aray[i] > maior)         //  esse valor maximo poderia ser pedido na propia fun√ß√£o do radix sort tambem...
             maior = aray[i];
 
-    for (int expoente = 1; maior/expoente > 0; expoente *= 10) // Se por exemplo, o meu maior valor È 3, esse for vai ser executado 3 vezes, percorrendo todos os digitos,
+    for (int expoente = 1; maior/expoente > 0; expoente *= 10) // Se por exemplo, o meu maior valor √© 3, esse for vai ser executado 3 vezes, percorrendo todos os digitos,
         CountingSort(aray, tamanho, expoente);                 // e aplicando o Counting Sort por casa decimal, do menos significativo para o mais significativo.
 }
 
